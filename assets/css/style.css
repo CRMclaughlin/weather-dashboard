@@ -2,15 +2,19 @@
     box-sizing: border-box;
 }
 
-.p-3 {
+#header {
   
     background-image: linear-gradient(to right, rgb(11, 86, 235) , rgb(36, 14, 124));
     font-size: 30px;
     font-weight: bold;
 }
 
-.form-label {
+.text-dark {
     font-size: 25px;
     font-weight: bold;
+}
+
+.row {
+    border: 3px black;
 }
 
