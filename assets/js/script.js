@@ -1,58 +1,22 @@
-var apiKey = "5263d662f1f882f01bbcb8a4ee9c63ef"
-
-searchBtn = document.querySelector('form')
-console.log(searchBtn)
-
-var nameInput = document.getElementById('city-input')
-
-function searchCity(event) {
-    event.preventDefault()
-    
-    var currentCity = nameInput.value   
-
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + currentCity + '&limit=5&appid=' + apiKey)
-    .then(function(response) {
-        if (response.status === 200) {
-            return response.json()
-        } else if (respone.status === 404) {
-
-        }
-    })
-    .then(function(data) {
-        console.log(data)
-    })
-}
-
-searchBtn.addEventListener('click', searchCity)
 
 
+// When user searches for a city *clicks search btn*
+// - store the user input into a variable
+// - use the fetch api to get location and pass in coordinates to weather api
+// - store that city into local storage
+// - create a past city button
+// - use data from fetch to populate current weather and 5 day forcast
 
-// searchBtn.addEventListner('click', getWeather)
 
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
+var apiKey = '5263d662f1f882f01bbcb8a4ee9c63ef'
+var weatherInfoUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
+var geoCoordinates = 'https://api.openweathermap.org/data/2.5/onecall?lat='
+var userFormEl = $('city-input')
+var fiveDayEl = $('#fiveDayForcast')
+var pastCitySearch = ('#past-searches')
+var today = moment().format('MM/DD/YYYY')
 
-// function getWeather(){
-//     var requestUrl = 
-    
-//     fetch(requestUrl)
-//     .then(function(response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data)
 
-//         for (var i = 0; i < data.length; i++) {
-//             var currentCity = document.createElement('h3')
+// Function to get the weather for city
 
-//             currentCity.textContent = data[i].??
-//         }
-//     })
-// }
-
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city   
+// Function to save to local storage
