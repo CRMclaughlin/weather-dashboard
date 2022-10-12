@@ -14,26 +14,26 @@
       <div class="d-flex justify-content-end"> Weather Dashboard</div>
     </div>
            
-    <div class="row">
+    <div class="col">
       
       <div class="column col-3">
         <form>
           <label class="text-dark">Search for a City:</label>
           <input class="form-control my-2 text-primary" type="text" placeholder="Enter city name" id="city-input">
           <button class="btn btn-outline-primary " style="width: 100%" type="submit" id="search-button btn">SEARCH</button>
+          <div class="column col-9">
+            <div class="row" id="currentConditions"></div>
+            <!-- Current city current weather conditions will go here  -->
+            <div class="row" id="fiveDayForecastHeader"></div>
+            <div class="d-flex flex-row flex-wrap justify-content-between" id="fiveDayForecast"></div>
+            <!-- Current city 5 day forecast will go here  -->
+          </div>
         </form>
 
         <div class="border-top border-transparent" id="past-searches">
           <!-- Past city searches will go here  -->
         </div>
 
-        <div class="column col-9">
-          <div class="row" id="currentConditions"></div>
-          <!-- Current city current weather conditions will go here  -->
-          <div class="row" id="fiveDayForecastHeader"></div>
-          <div class="d-flex flex-row flex-wrap justify-content-between" id="fiveDayForecast"></div>
-          <!-- Current city 5 day forecast will go here  -->
-        </div>
        
         
 
