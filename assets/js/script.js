@@ -11,11 +11,11 @@
 var apiKey = '5263d662f1f882f01bbcb8a4ee9c63ef'
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
 var coordinatesUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='
-var userFormEl = $('city-input')
+var userCityEl = $('city-input')
 var fiveDayEl = $('#fiveDayForcast')
 var pastCitySearch = ('#past-searches')
 var today = moment().format('MM/DD/YYYY')
-var city = ""
+var submitBtn = $('form')
 
 
 
@@ -26,19 +26,25 @@ var city = ""
 
 function getWeather() {
     
-    var citySearch = coordinatesUrl + 'milwaukee' + '&appid=' + apiKey;
+    var citySearch = weatherUrl + 'milwaukee' + '&appid=' + apiKey;
     
     fetch(citySearch)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data){
-            console.log(data)
-        })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data){
+        console.log(data)
+        
+    })
 }
 
 getWeather()
 
+
+
+function handleSubmit(event) {
+    event.preventDefault();
+}
 
 
 
