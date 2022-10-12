@@ -9,14 +9,71 @@
 
 
 var apiKey = '5263d662f1f882f01bbcb8a4ee9c63ef'
-var weatherInfoUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
-var geoCoordinates = 'https://api.openweathermap.org/data/2.5/onecall?lat='
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
+var coordinatesUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='
 var userFormEl = $('city-input')
 var fiveDayEl = $('#fiveDayForcast')
 var pastCitySearch = ('#past-searches')
 var today = moment().format('MM/DD/YYYY')
+var city = ""
+
+
+
+
 
 
 // Function to get the weather for city
 
+function getWeather() {
+    
+    var citySearch = coordinatesUrl + 'milwaukee' + '&appid=' + apiKey;
+    
+    fetch(citySearch)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data)
+        })
+}
+
+getWeather()
+
+
+
+
+
+
+
 // Function to save to local storage
+
+
+// Function to create past city search buttons
+
+// var apiKey = "5263d662f1f882f01bbcb8a4ee9c63ef"
+
+// searchBtn = document.querySelector('form')
+// console.log(searchBtn)
+
+// var nameInput = document.getElementById('city-input')
+
+// function searchCity(event) {
+//     event.preventDefault()
+
+//     var currentCity = nameInput.value   
+
+//     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + currentCity + '&limit=5&appid=' + apiKey)
+//     .then(function(response) {
+//         if (response.status === 200) {
+//             return response.json()
+//         } else if (respone.status === 404) {
+
+//         }
+//     })
+//     .then(function(data) {
+//         console.log(data)
+//     })
+// }
+
+// searchBtn.addEventListener('click', searchCity)
+
