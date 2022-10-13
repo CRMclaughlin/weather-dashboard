@@ -26,8 +26,6 @@
 
 
 var apiKey = '5263d662f1f882f01bbcb8a4ee9c63ef';
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
-var coordinatesUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=';
 var userCityEl = $('city-input');
 var currentWeatherEl = $('#currentConditions');
 var fiveDayEl = $('#fiveDayForcast');
@@ -46,8 +44,7 @@ function getWeather(event) {
     const cityName = $('#city-input').val();
     console.log(cityName)
 
-    // var citySearch = weatherUrl + 'milwaukee' + '&appid=' + apiKey + '&units=standard';
-    // var milwaukee = "milwaukee";
+    // api call to get weather for city
     let citySearch = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
     fetch(citySearch)
     .then(function (response) {
@@ -58,16 +55,17 @@ function getWeather(event) {
        // let temp = Math.floor(data.main);
         console.log(data.wind.speed, Math.floor(data.main.temp));
         
+        // creates elements in the dom
         var h1 = document.createElement('h1');
         var h2 = document.createElement('h2');
         var img = document.createElement('img');
         var h3 = document.createElement('h3');
-        
+        var h4 = document.createElement('h4')
 
         h1.textContent = new Date().toLocaleDateString;
         h2.textContent = data.main.temp;
         h3.textContent = data.wind.speed;
-        h3.textContent = data.main.humidty;
+        h4.textContent = data.main.humidty;
         img.src = data.weather[0].icon;
 
         // var icon = data.weather[0].icon;
@@ -76,7 +74,9 @@ function getWeather(event) {
         // var humidity = data.main.humidity;
         // var date = new Date().toLocaleDateString;
 
-        currentWeatherEl.append(h2);
+
+        // appends elements to the dom
+        currentWeatherEl.append(today, h2, h3,);
         
         // currentWeatherEl.append(h3)
         // currentWeatherEl.append(img)
