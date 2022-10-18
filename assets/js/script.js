@@ -33,6 +33,7 @@ var pastCitySearch = ('#past-searches');
 var today = moment().format('MM/DD/YYYY');
 var submitBtn = document.querySelector('form');
 
+var userCity = ""
 
 
 
@@ -41,11 +42,11 @@ var submitBtn = document.querySelector('form');
 
 function getWeather(event) {
     event.preventDefault()
-    const cityName = $('#city-input').val();
-    console.log(cityName)
+    userCity = $('#city-input').val()
+    console.log(userCity)
 
     // api call to get weather for city
-    let citySearch = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
+    let citySearch = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&units=imperial&appid=${apiKey}`;
     fetch(citySearch)
     .then(function (response) {
         return response.json();
@@ -53,20 +54,29 @@ function getWeather(event) {
     .then(function (data){
         console.log(data)
        // let temp = Math.floor(data.main);
-        console.log(data.wind.speed, Math.floor(data.main.temp));
-        
+        // console.log(data.wind.speed, Math.floor(data.main.temp));
+
+        var currentConditionsEl= $('#currentConditions');
+        currentConditionsEl.addClass('border border-primary');
+
+        // var cityNameEl = $('<h2>')
+        // cityNameEl.text('city-input');
+        // currentConditionsEl.append(cityNameEl)
         // creates elements in the dom
         var h1 = document.createElement('h1');
         var h2 = document.createElement('h2');
         var img = document.createElement('img');
-        var h3 = document.createElement('h3');
+        var h3Temp = document.createElement('h3');
+        var h3Wind = document.createElement('h3')
+        var h3Hum = document.createElement('h3')
         var h4 = document.createElement('h4')
 
-        h1.textContent = new Date().toLocaleDateString;
-        h2.textContent = data.main.temp;
-        h3.textContent = data.wind.speed;
-        h4.textContent = data.main.humidty;
-        img.src = data.weather[0].icon;
+        h1.textContent = today
+        h2.textContent = userCity
+        h3Temp.textContent = data.main.temp;
+        h3Wind.textContent = data.wind.speed;
+        h3Hum.textContent = data.main.humidity;
+        // img.src = data.weather[0].icon;
 
         // var icon = data.weather[0].icon;
         // var temp = data.main.temp;
@@ -76,7 +86,7 @@ function getWeather(event) {
 
 
         // appends elements to the dom
-        currentWeatherEl.append(today, h2, h3,);
+        currentWeatherEl.append(today,userCity, h3Temp, h3Wind, h3Hum, img);
         
         // currentWeatherEl.append(h3)
         // currentWeatherEl.append(img)
