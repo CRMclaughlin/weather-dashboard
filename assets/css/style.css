@@ -9,16 +9,7 @@
     font-weight: bold;
 }
 
-.text-dark {
-    font-size: 25px;
-    font-weight: bold;
+.singleHeader{
+    display: flex;
+    align-items: center;
 }
-
-.row {
-    border: 3px black;
-}
-
-/* #currentConditions {
-    border: 2px solid black;
-    border-radius: 4px 2px;
-} */
