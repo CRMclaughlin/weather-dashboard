@@ -93,29 +93,26 @@ function getWeather(event) {
         })
 }
 
-// function fiveDayForcast(userCity) {
-//     let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&units=imperial&appid=${apiKey}`
-//     fetch(fiveDay)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             console.log(data)
-//         })
+function fiveDayForcast(userCity) {
+    userCity = $('#city-input').val();
+    let fiveDay = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&units=imperial&appid=${apiKey}`
+    fetch(fiveDay)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+        })
 
-//         document.getElementById('fiveDayForecastCards').style.display = 'flex';
-
-//         let boxes = document.querySelectorAll('#weather');
-        
-//         for (i = 0; i < boxes.length; i++){
-
-//         }
+        for (let i = 3; i <= data.list.length; i += 9) {
             
+        }
 
-// }
+}
 
 
 submitBtn.addEventListener('submit', getWeather)
+submitBtn.addEventListener('submit', fiveDayForcast)
 
 // let weatherMain = i * 8 + 3;
 
