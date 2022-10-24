@@ -59,7 +59,7 @@ function getWeather(event) {
             return response.json();
         })
         .then(function (data) {
-          
+
 
             var currentConditionsEl = $('#currentConditions');
             currentConditionsEl.addClass('border border-primary');
@@ -69,54 +69,80 @@ function getWeather(event) {
             const temp = data.main.temp;
             const wind = data.wind.speed;
             const humidity = data.main.humidity;
-            
+
             var h1 = document.createElement('h1');
             var img = document.createElement('img');
             var h3Temp = document.createElement('h3');
             var h3Wind = document.createElement('h3');
             var h3Hum = document.createElement('h3');
-            
-            
+
+
             // creates elements in the dom
             h1.textContent = userCity + '(' + today + ')';
             h3Temp.textContent = 'Temp: ' + temp + '°F';
             h3Wind.textContent = 'Wind: ' + wind + ' MPH ';
             h3Hum.textContent = "Humidity: " + humidity + "%";
             img.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
-            
-            // appends elements to the dom
-             currentWeatherEl.append(h1, img, h3Temp, h3Wind, h3Hum);
-          
 
-            // fiveDayForcast(userCity)
+            // appends elements to the dom
+            currentWeatherEl.append(h1, img, h3Temp, h3Wind, h3Hum);
+
+
+            fiveDayForcast(userCity)
 
         })
 }
 
 function fiveDayForcast(userCity) {
     userCity = $('#city-input').val();
-    let fiveDay = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&units=imperial&appid=${apiKey}`
+    let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&units=imperial&appid=${apiKey}`
     fetch(fiveDay)
+
         .then(function (response) {
             return response.json();
+
         })
         .then(function (data) {
-            console.log(data)
-        })
-
-        for (let i = 3; i <= data.list.length; i += 9) {
             
-        }
 
+
+            for (let i = 3; i <= data.list.length; i += 9) {
+                const temp = data.list[i].main.temp;
+                const wind = data.list[i].wind.speed;
+                const humidity = data.list[i].main.humidity;
+
+                var today = data.list[i].dt_txt.split(' ')
+                var card = document.createElement('div')
+                var todayEl = document.createElement('h2')
+                var icon = document.createElement('img')
+                var temperature = document.createElement('p')
+                var windEl = document.createElement('p')
+                var humidityEl = document.createElement('p')
+
+                icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png"
+
+                todayEl.textContent = moment(today[0]).format('MM/DD/YYYY')
+                temperature.textContent = temp + '°F'
+                humidityEl.textContent = humidity + "%"
+                windEl.textContent = wind + " MPH"
+
+                card.appendChild(todayEl)
+                card.appendChild(icon)
+                card.appendChild(temperature)
+                card.appendChild(windEl)
+                card.appendChild(humidityEl)
+
+                fiveDayEl.appendChild(card)
+
+            }
+
+        })
 }
 
 
-submitBtn.addEventListener('submit', getWeather)
-submitBtn.addEventListener('submit', fiveDayForcast)
+submitBtn.addEventListener('submit', getWeather);
+submitBtn.addEventListener('submit', fiveDayForcast);
 
 // let weatherMain = i * 8 + 3;
 
-// function handleSubmit(event) {
-//     event.preventDefault();
-// }
 
